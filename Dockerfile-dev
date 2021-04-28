@@ -10,7 +10,7 @@ ARG TEST_DEPENDENCIES="libpng-dev"
 
 WORKDIR ${DEV_ROOT_DIR}
 
-COPY start.sh .
+COPY . .
 
 RUN set -ex \
     && apt update -y \
@@ -35,4 +35,4 @@ RUN set -ex \
 
 EXPOSE 5900
 
-CMD [ "./start.sh" ]
+CMD bash -c "./docker-start-script.sh && sleep infinity"
