@@ -54,16 +54,16 @@ int main(int argc, const char **argv)
 
     float start_x, start_y, end_x, end_y;
 
-    std::cout << "Please enter the starting x position (e.g. 10): ";
+    std::cout << "Please enter the starting x position (0-100): ";
     std::cin >> start_x;
 
-    std::cout << "Please enter the starting y position (e.g. 10): ";
+    std::cout << "Please enter the starting y position (0-100): ";
     std::cin >> start_y;
 
-    std::cout << "Please enter the ending x position (e.g. 90): ";
+    std::cout << "Please enter the ending x position (0-100): ";
     std::cin >> end_x;
 
-    std::cout << "Please enter the ending y position (e.g. 90): ";
+    std::cout << "Please enter the ending y position (0-100): ";
     std::cin >> end_y;
 
     // Build Model.
