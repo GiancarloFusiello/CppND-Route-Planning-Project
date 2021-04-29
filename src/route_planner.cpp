@@ -1,6 +1,7 @@
 #include "route_planner.h"
 #include <algorithm>
 #include <string>
+#include <cassert>
 
 RoutePlanner::RoutePlanner(RouteModel &model, float start_x, float start_y, float end_x, float end_y): m_Model(model) {
     // Convert inputs to percentage:
@@ -75,22 +76,10 @@ std::vector<RouteModel::Node> RoutePlanner::ConstructFinalPath(RouteModel::Node 
     std::reverse(path_found.begin(), path_found.end());
 
     // validate that path starts with the start node
-    auto first_element = path_found.front();
-    if (first_element.x != start_node->x || first_element.y != start_node->y) {
-        std::string error_message = "Path first element x, y coordinates differ from starting position. "
-                                    "First element x: " + std::to_string(first_element.x) + " y: " + std::to_string(first_element.y) +
-                                    " . Starting node x: " + std::to_string(start_node->x) + " y: " + std::to_string(start_node->y) + "\n";
-        throw std::runtime_error(error_message);
-    }
+    assert (path_found.front().x != start_node->x || path_found.front().y != start_node->y);
 
     // validate that path ends with the end node
-    auto last_element = path_found.back();
-    if (last_element.x != end_node->x || last_element.y != end_node->y) {
-        std::string error_message = "Path last element x, y coordinates differ from starting position. "
-                                    "last element x: " + std::to_string(last_element.x) + " y: " + std::to_string(last_element.y) +
-                                    " . Starting node x: " + std::to_string(end_node->x) + " y: " + std::to_string(end_node->y) + "\n";
-        throw std::runtime_error(error_message);
-    }
+    assert (path_found.back().x != end_node->x || path_found.back().y != end_node->y);
 
     return path_found;
 }
