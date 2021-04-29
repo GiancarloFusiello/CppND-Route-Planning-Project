@@ -39,8 +39,8 @@ void RoutePlanner::AddNeighbors(RouteModel::Node *current_node) {
 RouteModel::Node *RoutePlanner::NextNode() {
     // sort in descending order
     std::sort(open_list.begin(), open_list.end(), [](RouteModel::Node *a, RouteModel::Node *b){
-        float a_f_value = a->g_value + a->h_value;
-        float b_f_value = b->g_value + b->h_value;
+        const float a_f_value = a->g_value + a->h_value;
+        const float b_f_value = b->g_value + b->h_value;
 
         // first check if the F values are the same. If so, sort by H value (nearest to the goal)
         if (a_f_value == b_f_value) {
