@@ -1,18 +1,44 @@
 # Route Planning Project
 
-This repo contains the starter code for the Route Planning project.
+This repo contains my implementation of Udacity's Route Planning project.
 
 <img src="map.png" width="600" height="450" />
+
+## Quick start
+
+This quick start guide depends on the following being installed:
+
+[Docker](https://docs.docker.com/get-docker/)
+
+[GNU Make](https://www.gnu.org/software/make/)
+
+To build, run and view the route planning application run the following command in your terminal:
+```bash
+make launch
+```
+Follow the instructions displayed in the terminal to generate a path for the given co-ordinates.
+You can view the path by connecting to http://localhost:5900 using a [VNC Client](https://www.realvnc.com/download/viewer/).
+Use the password 'secret' if prompted.
+
+To build a docker container for development purposes run the following command in the terminal:
+```bash
+make build-dev
+```
+
+To see available make commands run the following in the terminal:
+```bash
+make help
+```
 
 ## Cloning
 
 When cloning this project, be sure to use the `--recurse-submodules` flag. Using HTTPS:
 ```
-git clone https://github.com/udacity/CppND-Route-Planning-Project.git --recurse-submodules
+git clone https://github.com/GiancarloFusiello/CppND-Route-Planning-Project.git --recurse-submodules
 ```
 or with SSH:
 ```
-git clone git@github.com:udacity/CppND-Route-Planning-Project.git --recurse-submodules
+git clone git@github.com:GiancarloFusiello/CppND-Route-Planning-Project.git --recurse-submodules
 ```
 
 ## Dependencies for Running Locally
@@ -58,4 +84,3 @@ The testing executable is also placed in the `build` directory. From within `bui
 ```
 ./test
 ```
-
