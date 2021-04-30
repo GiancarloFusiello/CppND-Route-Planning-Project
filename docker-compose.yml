@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  route-planner-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    container_name: route-planner-dev
+    image: route-planner-dev
+    ports:
+      - "5900:5900"
+
+  route-planner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: run_app
+    container_name: route-planner
+    image: route-planner
+    ports:
+      - "5900:5900"
