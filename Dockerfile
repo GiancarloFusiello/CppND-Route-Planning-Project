@@ -1,4 +1,4 @@
-FROM selenium/standalone-chrome-debug:latest
+FROM selenium/standalone-chrome-debug:latest as dev
 
 USER root
 
@@ -10,7 +10,7 @@ ARG TEST_DEPENDENCIES="libpng-dev"
 
 WORKDIR ${DEV_ROOT_DIR}
 
-COPY . .
+COPY docker-start-script.sh .
 
 RUN set -ex \
     && apt update -y \
@@ -31,8 +31,25 @@ RUN set -ex \
     && cmake --build . \
     && make install \
     # clean up
+    && apt autoremove \
+    && apt clean \
     && rm -rf ~/.cache/* /var/lib/apt/lists/* /var/cache/apt/* /tmp/*
 
+# VNC server
 EXPOSE 5900
 
 CMD bash -c "./docker-start-script.sh && sleep infinity"
+
+
+
+FROM dev as run_app
+
+ARG DEV_ROOT_DIR="/srv/app"
+
+WORKDIR ${DEV_ROOT_DIR}/build
+
+COPY . ..
+
+RUN cmake .. && make
+
+CMD bash -c "../docker-start-script.sh && ./OSM_A_star_search"
