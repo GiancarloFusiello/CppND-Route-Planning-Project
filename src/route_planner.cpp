@@ -1,7 +1,6 @@
 #include "route_planner.h"
 #include <algorithm>
 #include <string>
-#include <cassert>
 
 RoutePlanner::RoutePlanner(RouteModel &model, float start_x, float start_y, float end_x, float end_y): m_Model(model) {
     // Convert inputs to percentage:
@@ -74,12 +73,6 @@ std::vector<RouteModel::Node> RoutePlanner::ConstructFinalPath(RouteModel::Node 
 
     // correct the path order
     std::reverse(path_found.begin(), path_found.end());
-
-    // validate that path starts with the start node
-    assert (path_found.front().x != start_node->x || path_found.front().y != start_node->y);
-
-    // validate that path ends with the end node
-    assert (path_found.back().x != end_node->x || path_found.back().y != end_node->y);
 
     return path_found;
 }
