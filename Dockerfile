@@ -2,13 +2,12 @@ FROM selenium/standalone-chrome-debug:latest as dev
 
 USER root
 
-ARG DEV_ROOT_DIR="/srv/app"
 ARG DEV_DEPENDENCIES="git ca-certificates gdb net-tools"
 ARG BUILD_DEPENDENCIES="build-essential cmake"
 ARG THIRD_PARTY_DEPENDENCIES="libcairo2-dev libgraphicsmagick1-dev"
 ARG TEST_DEPENDENCIES="libpng-dev"
 
-WORKDIR ${DEV_ROOT_DIR}
+WORKDIR /srv/app
 
 COPY docker-start-script.sh .
 
@@ -44,12 +43,10 @@ CMD bash -c "./docker-start-script.sh && sleep infinity"
 
 FROM dev as run_app
 
-ARG DEV_ROOT_DIR="/srv/app"
-
-WORKDIR ${DEV_ROOT_DIR}/build
+WORKDIR /srv/app/build
 
 COPY . ..
 
 RUN cmake .. && make
 
-CMD bash -c "../docker-start-script.sh && ./OSM_A_star_search"
+CMD bash -c "../docker-start-script.sh && ./OSM_A_star_search -f ../map.osm"
